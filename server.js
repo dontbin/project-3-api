@@ -7,6 +7,11 @@ const cors = require('cors')
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
+const houseRoutes = require('./app/routes/house_routes')
+const schoolRoutes = require('./app/routes/school_routes')
+const studentRoutes = require('./app/routes/student_routes')
+const responseRoutes = require('./app/routes/response_routes')
+const surveyRoutes = require('./app/routes/survey_routes')
 
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
@@ -65,12 +70,16 @@ app.use(auth)
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
 app.use(bodyParser.json())
-// this parses requests sent by `$.ajax`, which use a different content type
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
+app.use(houseRoutes)
+app.use(schoolRoutes)
+app.use(studentRoutes)
+app.use(responseRoutes)
+app.use(surveyRoutes)
 
 // run API on designated port (4741 in this case)
 app.listen(port, () => {

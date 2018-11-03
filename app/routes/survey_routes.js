@@ -31,7 +31,7 @@ const router = express.Router()
 // INDEX
 // GET /surveys
 router.get('/surveys', requireToken, (req, res) => {
-  Survey.find().populate('school')
+  Survey.find().populate('survey')
     .then(surveys => {
       // `surveys` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
@@ -48,7 +48,7 @@ router.get('/surveys', requireToken, (req, res) => {
 // GET /surveys/5a7db6c74d55bc51bdf39793
 router.get('/surveys/:id', requireToken, (req, res) => {
   // req.params.id will be set based on the `:id` in the route
-  Survey.findById(req.params.id).populate('school')
+  Survey.findById(req.params.id).populate('survey')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "survey" JSON
     .then(survey => res.status(200).json({ survey: survey.toObject() }))
@@ -62,7 +62,7 @@ router.post('/surveys', requireToken, (req, res) => {
   // set owner of new survey to be current user
   req.body.survey.owner = req.user.id
 
-  Survey.create(req.body.survey).populate('school')
+  Survey.create(req.body.survey).populate('survey')
     // respond to succesful `create` with status 201 and JSON of new "survey"
     .then(survey => {
       res.status(201).json({ survey: survey.toObject() })
@@ -80,7 +80,7 @@ router.patch('/surveys/:id', requireToken, (req, res) => {
   // owner, prevent that by deleting that key/value pair
   delete req.body.survey.owner
 
-  Survey.findById(req.params.id).populate('school')
+  Survey.findById(req.params.id).populate('survey')
     .then(handle404)
     .then(survey => {
       // pass the `req` object and the Mongoose record to `requireOwnership`

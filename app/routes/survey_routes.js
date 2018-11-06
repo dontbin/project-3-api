@@ -62,7 +62,7 @@ router.post('/surveys', requireToken, (req, res) => {
   // set owner of new survey to be current user
   req.body.survey.owner = req.user.id
 
-  Survey.create(req.body.survey).populate('survey')
+  Survey.create(req.body.survey)
     // respond to succesful `create` with status 201 and JSON of new "survey"
     .then(survey => {
       res.status(201).json({ survey: survey.toObject() })

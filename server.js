@@ -7,9 +7,6 @@ const cors = require('cors')
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
-const houseRoutes = require('./app/routes/house_routes')
-const schoolRoutes = require('./app/routes/school_routes')
-const studentRoutes = require('./app/routes/student_routes')
 const responseRoutes = require('./app/routes/response_routes')
 const surveyRoutes = require('./app/routes/survey_routes')
 
@@ -75,9 +72,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
-app.use(houseRoutes)
-app.use(schoolRoutes)
-app.use(studentRoutes)
 app.use(responseRoutes)
 app.use(surveyRoutes)
 

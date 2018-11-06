@@ -1,21 +1,16 @@
 const mongoose = require('mongoose')
 
 const surveySchema = new mongoose.Schema({
-  surveyTitle: {
+  title: {
     type: String,
     required: true
   },
-  surveyTopic: {
+  question: {
     type: String,
     required: true
   },
-  surveyAdmin: {
+  admin: {
     type: String,
-    required: true
-  },
-  response: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Response',
     required: true
   },
   owner: {

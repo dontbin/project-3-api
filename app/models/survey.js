@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const response = require('./response.js')
 
 const surveySchema = new mongoose.Schema({
   title: {
@@ -17,7 +18,8 @@ const surveySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }
+  },
+  responses: [response]
 }, {
   timestamps: true
 })

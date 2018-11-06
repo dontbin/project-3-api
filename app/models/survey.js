@@ -1,28 +1,25 @@
 const mongoose = require('mongoose')
+const response = require('./response.js')
 
 const surveySchema = new mongoose.Schema({
-  surveyTitle: {
+  title: {
     type: String,
     required: true
   },
-  surveyTopic: {
+  question: {
     type: String,
     required: true
   },
-  surveyAdmin: {
+  admin: {
     type: String,
-    required: true
-  },
-  response: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Response',
     required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }
+  },
+  responses: [response]
 }, {
   timestamps: true
 })

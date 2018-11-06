@@ -45,7 +45,7 @@ router.get('/surveys', requireToken, (req, res) => {
 })
 
 // SHOW
-// GET /surveys/5a7db6c74d55bc51bdf39793
+// GET /surveys
 router.get('/surveys/:id', requireToken, (req, res) => {
   // req.params.id will be set based on the `:id` in the route
   Survey.findById(req.params.id).populate('survey')
@@ -62,7 +62,7 @@ router.post('/surveys', requireToken, (req, res) => {
   // set owner of new survey to be current user
   req.body.survey.owner = req.user.id
 
-  Survey.create(req.body.survey).populate('survey')
+  Survey.create(req.body.survey)
     // respond to succesful `create` with status 201 and JSON of new "survey"
     .then(survey => {
       res.status(201).json({ survey: survey.toObject() })
@@ -74,35 +74,20 @@ router.post('/surveys', requireToken, (req, res) => {
 })
 
 // UPDATE
-// PATCH /surveys/5a7db6c74d55bc51bdf39793
+// PATCH
 router.patch('/surveys/:id', requireToken, (req, res) => {
-  // if the client attempts to change the `owner` property by including a new
-  // owner, prevent that by deleting that key/value pair
-  delete req.body.survey.owner
+ // if the client attempts to change the `owner` property by including a new
+ // owner, prevent that by deleting that key/value pair
+ delete req.body.survey.owner
 
-  Survey.findById(req.params.id).populate('survey')
-    .then(handle404)
-    .then(survey => {
-      // pass the `req` object and the Mongoose record to `requireOwnership`
-      // it will throw an error if the current user isn't the owner
-      requireOwnership(req, survey)
-
-      // the client will often send empty strings for parameters that it does
-      // not want to update. We delete any key/value pair where the value is
-      // an empty string before updating
-      Object.keys(req.body.survey).forEach(key => {
-        if (req.body.survey[key] === '') {
-          delete req.body.survey[key]
-        }
-      })
-
-      // pass the result of Mongoose's `.update` to the next `.then`
-      return survey.update(req.body.survey)
-    })
-    // if that succeeded, return 204 and no JSON
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(err => handle(err, res))
+ Survey.findOneAndUpdate(
+  { _id: req.params.id },
+  { $push: { responses: req.body.survey.responses  } },
+   )
+   // if that succeeded, return 204 and no JSON
+   .then(() => res.sendStatus(204))
+   // if an error occurs, pass it to the handler
+   .catch(err => handle(err, res))
 })
 
 // DESTROY

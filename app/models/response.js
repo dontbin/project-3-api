@@ -1,15 +1,9 @@
 const mongoose = require('mongoose')
 
 const responseSchema = new mongoose.Schema({
-  response: {
-    questionOne: {
-      type: String,
-      required: true
-    },
-    questionTwo: {
-      type: String,
-      required: true
-    }
+  answer: {
+    type: Number,
+    required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,4 +14,4 @@ const responseSchema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('Response', responseSchema)
+module.exports = responseSchema

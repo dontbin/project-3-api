@@ -82,6 +82,7 @@ router.patch('/surveys/:id', requireToken, (req, res) => {
  Survey.findOneAndUpdate(
   { _id: req.params.id },
   { $push: { responses: req.body.survey.responses  } },
+  {new: true}
    )
    // if that succeeded, return 204 and no JSON
    .then(survey => {

@@ -84,7 +84,9 @@ router.patch('/surveys/:id', requireToken, (req, res) => {
   { $push: { responses: req.body.survey.responses  } },
    )
    // if that succeeded, return 204 and no JSON
-   .then(() => res.sendStatus(204))
+   .then(survey => {
+     res.status(201).json({ survey: survey.toObject() })
+ })
    // if an error occurs, pass it to the handler
    .catch(err => handle(err, res))
 })

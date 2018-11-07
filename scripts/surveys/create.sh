@@ -10,10 +10,9 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "survey": {
-      "surveyTitle": "'"${SURVEYTITLE}"'",
-      "surveyTopic": "'"${SURVEYTOPIC}"'",
-      "surveyAdmin": "'"${SURVEYADMIN}"'",
-      "response": "'"${RESPONSE_ID}"'"
+      "title": "'"${TITLE}"'",
+      "question": "'"${QUESTION}"'",
+      "admin": "'"${ADMIN}"'"
     }
   }'
 

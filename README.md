@@ -30,13 +30,13 @@ API
 https://imgur.com/a/K26OMgX
 
 ## Routes and Methods
-POST method for route '/sign-up'
-POST method for route '/sign-in'
-PATCH method for route '/change-password'
-DELETE method for route '/sign-out'
+* POST method for route '/sign-up'
+* POST method for route '/sign-in'
+* PATCH method for route '/change-password'
+* DELETE method for route '/sign-out'
 
-GET method for route '/surveys'
-GET method for route '/surveys/:id'
-POST method for route '/survey'
-PATCH method for route '/surveys/:id'
-DELETE method for route '/surveys/:id'
+* GET method for route '/surveys'
+* GET method for route '/surveys/:id'
+* POST method for route '/survey'
+* PATCH method for route '/surveys/:id'
+* DELETE method for route '/surveys/:id'

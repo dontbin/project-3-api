@@ -26,6 +26,11 @@ API
 5. Set up basic front end that allows us to create, answer, list, and delete surveys.
 6. Change auto generated route methods to give back the proper response.
 
+## Unsolved problems
+1. Does not update live when other users are voting on surveys. Must refresh page to get latest data.
+2. At times when being the first answer on a survey the graph wont show up.
+3. Graphical differences between different browsers coul be ironed out.
+
 ## ERD and wireframes
 https://imgur.com/a/K26OMgX
 

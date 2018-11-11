@@ -29,7 +29,7 @@ API
 ## Unsolved problems
 1. Does not update live when other users are voting on surveys. Must refresh page to get latest data.
 2. At times when being the first answer on a survey the graph wont show up.
-3. Graphical differences between different browsers coul be ironed out.
+3. Graphical differences between different browsers could be ironed out.
 
 ## ERD and wireframes
 https://imgur.com/a/K26OMgX
